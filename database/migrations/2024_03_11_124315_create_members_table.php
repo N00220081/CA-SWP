@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('profile_pic');
             $table->string('name');
             $table->enum('pressure', ['low','normal','high']);
             $table->enum('temperature', ['extra_cold','cold','normal','hot','extra_hot','custom']);
-            $table->decimal('timer',2,2);
+            $table->string('timer');
             $table->timestamps();
         });
     }
