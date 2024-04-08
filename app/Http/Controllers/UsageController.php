@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class MemberController extends Controller
+class UsageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       
-        $members = Member::where('user_id', Auth::id())->latest('updated_at')->get();
-        return view('members.index')->with('members', $members);
+        //
     }
 
     /**

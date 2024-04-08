@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsageController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
@@ -21,6 +22,10 @@ Route::middleware('auth')->group(function () {
 
 // Member
 Route::resource('/member', MemberController::class)->middleware(['auth']);
+
+// Usage
+Route::resource('/usage', UsageController::class)->middleware(['auth']);
+
 
 
 
