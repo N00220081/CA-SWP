@@ -12,34 +12,43 @@ class MemberController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-       
-        $members = Member::where('user_id', Auth::id())->latest('updated_at')->get();
+    {   
+        $members = Member::all();
         return view('members.index')->with('members', $members);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+       
+        return view('members.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+ 
     public function store(Request $request)
     {
-        //
+     
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+       Member::created([
+        'profile_pic' => "https://picsum.photos/id/118/500/500",
+        'name' => $request->name,
+        'pressure' => "Select preferred Pressure",
+        'temperature' => "Select preferred Temperature",
+        'created_at' => now(),
+        'updated_at' => now(),
+       ]);
+       return to_route('member.index');
+    
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+  
+    public function show($id)
     {
-        //
+        $member = Member::find($id);
+        return view('members.show')->with('member', $member);
     }
 
     /**
